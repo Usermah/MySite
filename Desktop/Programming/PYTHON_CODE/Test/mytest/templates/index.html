@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Age Calculator</title>
+</head>
+<body>
+    <h1>Enter Your Date of Birth</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Calculate Age</button>
+    </form>
+
+    {% if age_details %}
+        <h2>Your Age:</h2>
+        <p>{{ age_details.years }} years</p>
+        <p>{{ age_details.months }} months</p>
+        <p>{{ age_details.weeks }} weeks</p>
+        <p>{{ age_details.days }} days</p>
+        <p>{{ age_details.hours }} hours</p>
+    {% endif %}
+</body>
+</html>
