@@ -30,16 +30,19 @@ def calculate_age(date_of_birth):
     # Calculate total hours
     total_hours = (now - date_of_birth).total_seconds() // 3600
     
+    # Approximate months and days
+    approximate_months = delta.years * 12 + delta.months
+    approximate_days = total_days % 365
+    
     age_details = {
         'years': delta.years,
-        'months': delta.months,
+        'months': approximate_months,
         'weeks': weeks,
-        'days': days,
+        'days': approximate_days,
         'hours': total_hours
     }
     
     return age_details
-
 
 
 
@@ -57,10 +60,6 @@ def calculate_age_view(request):
         form = BirthDateForm()
 
     return render(request, 'index.html', {'form': form, 'age_details': age_details})
-
-
-
-
 def home(request):
     return HttpResponse("Home")
 
